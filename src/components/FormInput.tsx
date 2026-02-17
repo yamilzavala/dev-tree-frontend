@@ -30,9 +30,9 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
                     placeholder={placeholder}
                     {...rest}
                 />
-                {errors[name] && (
+                {(errors[name] && name !== 'image') && (
                     <ErrorMessage>
-                        {errors[name]?.message as string}
+                        <span className='capitalize'>{errors[name]?.message as string}</span>
                     </ErrorMessage>
                 )}
             </div>  

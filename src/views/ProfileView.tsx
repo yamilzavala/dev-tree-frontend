@@ -1,28 +1,29 @@
-import { Form, Link, useNavigate } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import SubmitBtn from '../components/SubmitBtn';
 import { useForm } from 'react-hook-form'
-import type { LoginForm, ProfileForm } from '../types';
-import { toast } from 'sonner'
-import { isAxiosError } from 'axios'
-import api from '../config/axios';
+import type { ProfileForm, User } from '../types';
 import ErrorMessage from '../components/ErrorMessage';
+import { useQueryClient } from '@tanstack/react-query';
 
 const ProfileView = () => {
   const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  const data: User = queryClient.getQueryData(['user'])!
 
-  const initialValues: ProfileForm = {
-    handle: '',
-    description: '',
-    image: ''
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ProfileForm>({ defaultValues: {
+    handle: data.handle,
+    description: data.description
+  } });
+
+  const handleuserProfileForm = (formData) => {
+    console.log(formData)
   }
 
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm({ defaultValues: initialValues });
-
-
   return (
-    <section className="h-[50vh] flex items-center justify-center px-4 rounded-lg">
+    <section className="flex items-center justify-center px-4 rounded-lg">
       <Form
+        onSubmit={handleSubmit(handleuserProfileForm)}
         className="w-full max-w-md rounded-2xl shadow-xl border border-gray-200 p-8 flex flex-col gap-6"
       >
         {/* Header */}
@@ -49,11 +50,6 @@ const ProfileView = () => {
                 required: 'handle is required'
               })}
             />
-            {errors.handle && (
-              <ErrorMessage>
-                {errors.handle?.message as string}
-              </ErrorMessage>
-            )}
           </div>
         </div>
 
@@ -73,7 +69,7 @@ const ProfileView = () => {
             />
             {errors.description && (
               <ErrorMessage>
-                {errors.description?.message as string}
+                <span className='capitalize'>{errors.description?.message as string}</span>
               </ErrorMessage>
             )}
           </div>
@@ -89,15 +85,8 @@ const ProfileView = () => {
               type="file"
               placeholder="Select file"
               errors={errors}
-              {...register('image', {
-                required: 'image is required'
-              })}
+              {...register('image')}
             />
-            {errors.image && (
-              <ErrorMessage>
-                {errors.image?.message as string}
-              </ErrorMessage>
-            )}
           </div>
         </div>
 
