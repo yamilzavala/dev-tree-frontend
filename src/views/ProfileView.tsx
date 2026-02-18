@@ -4,7 +4,9 @@ import SubmitBtn from '../components/SubmitBtn';
 import { useForm } from 'react-hook-form'
 import type { ProfileForm, User } from '../types';
 import ErrorMessage from '../components/ErrorMessage';
-import { useQueryClient } from '@tanstack/react-query';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { updateProfile } from '../api/DevTree';
+import { toast } from 'sonner'
 
 const ProfileView = () => {
   const navigate = useNavigate()
@@ -16,15 +18,27 @@ const ProfileView = () => {
     description: data.description
   } });
 
-  const handleuserProfileForm = (formData) => {
-    console.log(formData)
+  const updateProfileMutation = useMutation({
+    mutationFn: updateProfile,
+    onError: (error) => {
+      console.log(error)
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      toast.success(data?.msg)
+      queryClient.invalidateQueries({queryKey: ['user']})
+    }
+  })
+
+  const handleuserProfileForm = (formData: ProfileForm) => {
+    updateProfileMutation.mutate(formData)
   }
 
   return (
-    <section className="flex items-center justify-center px-4 rounded-lg">
+    <section className="flex items-center justify-center rounded-lg">
       <Form
         onSubmit={handleSubmit(handleuserProfileForm)}
-        className="w-full max-w-md rounded-2xl shadow-xl border border-gray-200 p-8 flex flex-col gap-6"
+        className="w-auto rounded-2xl shadow-xl border border-gray-200 p-8 flex flex-col gap-6"
       >
         {/* Header */}
         <div className="text-center space-y-2">

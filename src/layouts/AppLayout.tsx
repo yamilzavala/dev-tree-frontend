@@ -5,8 +5,6 @@ import { getUser } from '../api/DevTree';
 import DevTree from '../components/DevTree';
 
 const AppLayout = () => {
-    // const navigation = useNavigation();
-    // const isLoading = navigation.state === 'loading';
     const { data, isLoading, isError } = useQuery({
         queryFn: getUser,
         queryKey: ['user'],

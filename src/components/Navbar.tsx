@@ -7,8 +7,8 @@ import Toggle from './Toggle';
 const Navbar = () => {
 
   return (
-    <nav className='bg-base-200'>
-      <div className='navbar align-element '>
+    <nav className='bg-base-200 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-screen after:bg-gradient-to-r after:from-purple-500 after:via-pink-500 after:to-orange-500 after:-ml-[50vw] after:left-[50%]'>
+      <div className='navbar align-element'>
 
         {/* HOME AND DROPDOWN */}
         <div className='navbar-start'>

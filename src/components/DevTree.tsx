@@ -7,7 +7,7 @@ const DevTree = ({data}:{data: User}) => {
       <>
             <Navbar />
             {
-                <section className='align-element py-20 h-[43vh] '>
+                <section className='align-element py-5 h-[43vh] '>
                     <div className="flex flex-col md:flex-row gap-5 mt-10">                        
                         <div className="flex-1">
                             <Outlet />
