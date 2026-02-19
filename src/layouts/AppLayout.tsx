@@ -16,7 +16,7 @@ const AppLayout = () => {
     
     if(isError) return (<Navigate to={'/auth/login'} />)
 
-    if(data) return <DevTree data={data} />
+    if(data) return <DevTree data={data} isLoading={isLoading} />
 }
 
 export default AppLayout

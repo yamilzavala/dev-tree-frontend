@@ -17,7 +17,7 @@ const Navbar = () => {
             to='/admin'
             className='hidden lg:flex text-3xl items-center'
           >
-            <FaCodepen className="hover:text-blue-700 transition"/>
+            <FaCodepen className="hover:text-primary transition"/>
           </NavLink>
           {/* DROPDOWN */}
           <div className='dropdown'>

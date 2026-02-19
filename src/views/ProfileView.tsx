@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import type { ProfileForm, User } from '../types';
 import ErrorMessage from '../components/ErrorMessage';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
-import { updateProfile } from '../api/DevTree';
+import { updateImage, updateProfile } from '../api/DevTree';
 import { toast } from 'sonner'
 
 const ProfileView = () => {
@@ -21,7 +21,6 @@ const ProfileView = () => {
   const updateProfileMutation = useMutation({
     mutationFn: updateProfile,
     onError: (error) => {
-      console.log(error)
       toast.error(error.message)
     },
     onSuccess: (data) => {
@@ -29,6 +28,29 @@ const ProfileView = () => {
       queryClient.invalidateQueries({queryKey: ['user']})
     }
   })
+
+  const updateImageMutation = useMutation({
+    mutationFn: updateImage,
+    onError: (error) => {
+      toast.error(error.message)
+    },
+    onSuccess: (data) => {
+      toast.success(data?.msg)
+      // queryClient.invalidateQueries({queryKey: ['user']})
+      queryClient.setQueryData(['user'], (prevData: User) =>{
+        return {
+          ...prevData,
+          image: data?.image
+        }
+      })
+    }
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
+    if(e.target.files) {
+      updateImageMutation.mutate(e.target.files[0])
+    }
+  }
 
   const handleuserProfileForm = (formData: ProfileForm) => {
     updateProfileMutation.mutate(formData)
@@ -95,11 +117,13 @@ const ProfileView = () => {
             <label className="block text-sm font-medium text-base-content mb-1">
               Image
             </label>
-            <FormInput
+            <input
               type="file"
+              name="image"
               placeholder="Select file"
-              errors={errors}
-              {...register('image')}
+              className='bg-base text-base-content w-full rounded-lg border-[1px] border-gray-300 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition'
+              accept="image"
+              onChange={handleChange}
             />
           </div>
         </div>
