@@ -21,7 +21,7 @@ const NavLinks = () => {
                             end={end}
                         >
                             {({ isActive }) => (
-                                <span className={isActive ? 'text-primary' : ''}>{text}</span>
+                                <span className={isActive ? 'text-pink-500' : ''}>{text}</span>
                             )}
                         </NavLink>
                     </li>

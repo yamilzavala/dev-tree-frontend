@@ -10,7 +10,7 @@ const DevTreeLink = ({link}: {link: SocialNetwork}) => {
     return (
         <a 
         href={linkWithIcon.url} 
-        className={`mt-2 p-2 rounded-lg bg-base-content text-base-300 py-2.5 text-sm font-medium shadow-md hover:opacity-90 cursor-pointer transition flex items-center justify-center gap-2`}
+        className={`mt-2 p-2 rounded-lg bg-base-content text-base-300 py-2.5 text-sm font-medium shadow-md hover:opacity-90 opacity-80 cursor-pointer transition flex items-center justify-center gap-2`}
         target='_blank'
         >
             <linkWithIcon.icon className='w-4 h-4' />

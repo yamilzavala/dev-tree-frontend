@@ -13,22 +13,38 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
 
     return (
         <>
-            <Navbar />
-            {
-                <section className='align-element py-5 h-full'>
-                    <div className="flex flex-col md:flex-row gap-5 mt-10 ">
-                        <div className="flex-1">
-                            <Outlet />
-                        </div>
+            {/* Video Background */}
+            <div className="fixed inset-0 w-full h-full overflow-hidden z-0 opacity-45">
+                <video 
+                    autoPlay 
+                    loop 
+                    muted 
+                    playsInline
+                    className="absolute min-w-full min-h-full w-auto h-auto object-cover"
+                >
+                    <source src="/video_animated_1.mp4" type="video/mp4" />
+                    Sorry, your browser does not support embedded videos
+                </video>
+                <div className="absolute inset-0 bg-base-300/20"></div>
+            </div>
 
-                        <div className="w-full md:w-1/2 px-5 py-10 space-y-6 border rounded-lg shadow-xl">
+            <div className="relative z-10">
+                <Navbar />
+                {
+                    <section className='align-element py-5 h-full'>
+                        <div className="flex flex-col md:flex-row gap-5 mt-10 ">
+                            <div className="flex-1">
+                                <Outlet />
+                            </div>
+
+                            <div className="w-full md:w-1/2 px-5 py-10 space-y-6 border rounded-lg shadow-xl bg-base-100/95 backdrop-blur-sm">
                             {/* Header */}
                             <div className="text-center space-y-2">
                                 <Link className="text-2xl font-semibold text-base-content"
                                     to={''}
                                     target="_blank"
                                     rel="noreferrer noopener">
-                                    Visit My Profile: <span className='text-primary text-md'>/{data.handle}</span>
+                                    Visit My Profile: <span className='text-pink-400 text-md'>/{data.handle}</span>
                                 </Link>
                                 <p className="text-sm text-base-content/70">
                                     Welcome back! Check out my social media links
@@ -57,7 +73,8 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
                         </div>
                     </div>
                 </section>
-            }
+                }
+            </div>
         </>
     )
 }
