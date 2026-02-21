@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import { Link, Outlet } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import DevTreeLink from './DevTreeLink'
+import BackgroundAnimation from './BackgroundAnimation'
 
 const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
     const [enabledLinks, setEnabledLinks] = useState<SocialNetwork[]>(JSON.parse(data.links).filter((item: SocialNetwork) => item.enabled))
@@ -14,7 +15,8 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
     return (
         <>
             {/* Video Background */}
-            <div className="fixed inset-0 w-full h-full overflow-hidden z-0 opacity-45">
+            <BackgroundAnimation opacity={45} />
+            {/* <div className="fixed inset-0 w-full h-full overflow-hidden z-0 opacity-45">
                 <video
                     autoPlay
                     loop
@@ -26,7 +28,7 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
                     Sorry, your browser does not support embedded videos
                 </video>
                 <div className="absolute inset-0 bg-base-300/20"></div>
-            </div>
+            </div> */}
 
             <div className="relative z-10">
                 <Navbar />
@@ -53,7 +55,7 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
 
                                 {/* Content */}
                                 <div className='text-center space-y-3'>
-                                    <h2 className="text-2xl font-bold text-gray-600">
+                                    <h2 className="text-2xl font-bold text-base-content">
                                         {data.handle}
                                     </h2>
 

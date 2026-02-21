@@ -23,7 +23,7 @@ const LoginView = () => {
       const { data: { msg, token } } = await api.post('/api/auth/login', formData)
       localStorage.setItem('AUTH_TOKEN', token)
       toast.success(msg)
-      navigate('/admin')
+      navigate('/')
       reset()
     } catch (error) {
       if (isAxiosError(error)) {

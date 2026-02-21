@@ -3,6 +3,7 @@ import ErrorElement from './components/ErrorElement';
 import AppLayout from './layouts/AppLayout';
 import HandleLayout from './layouts/HandleLayout';
 import HandleView from './views/HandleView';
+import HomeView from './views/HomeView';
 import LinkTreeView from './views/LinkTreeView';
 import LoginView from './views/LoginView'
 import NotFoundView from './views/NotFoundView';
@@ -13,7 +14,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <LoginView />,
+        element: <HomeView />,
         errorElement: <Error />,
     },
     {

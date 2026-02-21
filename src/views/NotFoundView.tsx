@@ -15,7 +15,7 @@ const NotFoundView = () => {
                     </p>
                     <div className='mt-10'>
                         <button className='btn btn-secondary text-pink-400 flex items-center p-5 bg-blackmy-5 rounded-lg bg-gradient-to-r from-gray-700 to-gray-900 py-2.5 text-sm font-medium shadow-md hover:opacity-90 transition flex items-center justify-center content-center mx-auto gap-2'>
-                            <Link to='/admin' >
+                            <Link to='/' >
                                 Go back home
                             </Link>
                         </button>

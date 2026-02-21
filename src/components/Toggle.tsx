@@ -24,10 +24,10 @@ const Toggle = () => {
             <input type='checkbox' onChange={handleTheme} />
         
             {/* sun icon */}
-            <BsSunFill className='swap-on h-4 w-4' />
+            <BsSunFill className='swap-on h-4 w-4  text-gray-950 ' />
         
             {/* moon icon */}
-            <BsMoonFill className='swap-off h-4 w-4' />
+            <BsMoonFill className='swap-off h-4 w-4  text-gray-950 ' />
             </label>
         </div>
     );

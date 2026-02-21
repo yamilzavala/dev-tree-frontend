@@ -4,34 +4,41 @@ type HandleDataHeaderProps = {
     description: string,
 }
 
-
-  const HandleDataHeader = ({ image, handle, description }: HandleDataHeaderProps) => {
+const HandleDataHeader = ({ image, handle, description }: HandleDataHeaderProps) => {
   return (
-    <div className="rounded-b-3xl px-8 py-10 flex items-center gap-6">
-
+    <div className="relative w-full h-1/2 overflow-hidden rounded-t-lg border">
+      {/* Background overlay */}
+      <div className="absolute inset-0 z-30 bg-black/35" />
+      
+      {/* Background image */}
       {image && (
         <img
           src={image}
           alt={handle}
-          className="w-32 h-32 rounded-full object-cover"
+          className="relative z-20 h-[300px] w-full object-cover brightness-60"
         />
       )}
-
-      <div className="flex flex-col text-start">
-        <h2 className="text-3xl font-bold text-gray-900">
-          {handle}
-        </h2>
-        <p className="text-md text-gray-500">
-          {description}
-        </p>
-        <span className="mt-2 text-gray-600 text-sm">
-          website.com
-        </span>
+      
+      {/* Content overlay */}
+      <div className="absolute inset-0 z-40 flex flex-col justify-end p-6 text-white">
+        <div className="flex items-end justify-between">
+          <div className="flex flex-col">
+            <h2 className="text-3xl font-bold">
+              {handle}
+            </h2>
+            <p className="mt-2 text-sm text-gray-200">
+              {description}
+            </p>
+          </div>
+          
+          {/* Badge */}
+          <span className="rounded-full bg-gray-800/80 px-3 py-1 text-xs font-medium text-gray-200 backdrop-blur-sm">
+            Featured
+          </span>
+        </div>
       </div>
-
     </div>
   )
 }
-
 
 export default HandleDataHeader
