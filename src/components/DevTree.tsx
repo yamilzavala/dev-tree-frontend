@@ -15,10 +15,10 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
         <>
             {/* Video Background */}
             <div className="fixed inset-0 w-full h-full overflow-hidden z-0 opacity-45">
-                <video 
-                    autoPlay 
-                    loop 
-                    muted 
+                <video
+                    autoPlay
+                    loop
+                    muted
                     playsInline
                     className="absolute min-w-full min-h-full w-auto h-auto object-cover"
                 >
@@ -37,42 +37,44 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
                                 <Outlet />
                             </div>
 
-                            <div className="w-full md:w-1/2 px-5 py-10 space-y-6 border rounded-lg shadow-xl bg-base-100/95 backdrop-blur-sm">
-                            {/* Header */}
-                            <div className="text-center space-y-2">
-                                <Link className="text-2xl font-semibold text-base-content"
-                                    to={''}
-                                    target="_blank"
-                                    rel="noreferrer noopener">
-                                    Visit My Profile: <span className='text-pink-400 text-md'>/{data.handle}</span>
-                                </Link>
-                                <p className="text-sm text-base-content/70">
-                                    Welcome back! Check out my social media links
-                                </p>
+                            <div className="w-full md:w-1/2 py-10 space-y-6 border rounded-lg shadow-xl bg-base-100/95 backdrop-blur-sm">
+                                {/* Header */}
+                                <div className="text-center space-y-1 w-full">
+                                    <Link className="text-2xl font-semibold text-base-content"
+                                        to={`/${data.handle}`}
+                                        target="_blank"
+                                        rel="noreferrer noopener">
+                                        Visit My Profile: <span className='text-pink-400 text-md'>/{data.handle}</span>
+                                    </Link>
+                                    <p className="text-sm text-base-content/70">
+                                        Welcome back! Check out my social media links
+                                    </p>
+                                </div>
+
+                                {/* Content */}
+                                <div className='text-center space-y-3'>
+                                    <h2 className="text-2xl font-bold text-gray-600">
+                                        {data.handle}
+                                    </h2>
+
+                                    {data.image && (
+                                        <img src={data.image} alt='profile image' className='mx-auto max-w-[300px] max-h-[300px] w-full object-cover rounded-lg' />)}
+
+                                    <p className='m-auto max-w-[300px] text-sm pt-4 text-muted-foreground font-light leading-loose items-center'>{data.description}</p>
+
+                                    {enabledLinks && (
+                                        <div className='flex justify-center gap-2 flex-wrap'>
+                                            {enabledLinks.map(link => {
+                                                return (
+                                                    <DevTreeLink link={link} key={link.name} />
+                                                )
+                                            })}
+                                        </div>)}
+                                </div>
+
                             </div>
-
-                            {/* Content */}
-                            <div className='text-center space-y-2'>
-                                <p className='text-sm text-muted-foreground font-light leading-loose pb-2'>{data.handle}</p>
-
-                                {data.image && (
-                                    <img src={data.image} alt='profile image' className='mx-auto max-w-[300px] max-h-[300px] w-full object-cover rounded-lg' />)}
-
-                                <p className='text-sm pt-4 text-muted-foreground font-light leading-loose items-center w-auto'>{data.description}</p>
-
-                                {enabledLinks && (
-                                    <div className='flex justify-center gap-2 flex-wrap'>
-                                        {enabledLinks.map(link => {
-                                            return (
-                                                <DevTreeLink link={link} key={link.name} />
-                                            )
-                                        })}
-                                    </div>)}
-                            </div>
-
                         </div>
-                    </div>
-                </section>
+                    </section>
                 }
             </div>
         </>
