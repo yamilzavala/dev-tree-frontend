@@ -1,4 +1,3 @@
-import { FaCodepen } from "react-icons/fa";
 import { FaBarsStaggered } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
@@ -20,13 +19,6 @@ const Navbar = ({ data }: { data?: User }) => {
 
         {/* HOME AND DROPDOWN */}
         <div className='navbar-start'>
-          {/* Title */}
-          <NavLink
-            to='/'
-            className='hidden lg:flex text-3xl items-center'
-          >
-            <FaCodepen className="hover:text-pink-500 text-gray-950 transition" />
-          </NavLink>
           {/* DROPDOWN */}
           <div className='dropdown'>
             <label tabIndex={0} className='btn btn-ghost lg:hidden  text-gray-950 '>
@@ -49,17 +41,17 @@ const Navbar = ({ data }: { data?: User }) => {
         </div>
 
         {/* CART AND THEME */}
-        <div className='navbar-end flex gap-5'>
+        <div className='navbar-end flex gap-2 sm:gap-5'>
           {/* THEME ICONS */}
           <Toggle />
           {/* LogOut */}
           {data?._id && (
             <NavLink
-              className='capitalize text-sm text-base-content '
+              className='capitalize text-xs sm:text-sm text-base-content'
               to='/auth/login'
               onClick={logout}
             >
-              <span className='text-base-content p-2 rounded-md bg-pink-300'>Sign out</span>
+              <span className='text-base-content px-2 py-1.5 sm:p-2 rounded-md bg-pink-300 whitespace-nowrap'>Sign Out</span>
             </NavLink>
          )}
         </div>

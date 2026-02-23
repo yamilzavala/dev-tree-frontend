@@ -43,7 +43,7 @@ const LinkTreeView = () => {
   }, [])
 
   return (
-    <div className="w-full py-7 border rounded-lg shadow-xl">
+    <div className="w-full py-4 sm:py-7 border rounded-lg shadow-xl overflow-hidden">
       {devTreeLinks.map(item => (
         <DevTreeInput key={item.name} item={item} setItem={setDevTreeLinks} items={devTreeLinks}/>
       ))}
@@ -51,7 +51,7 @@ const LinkTreeView = () => {
       {/* button */}
        <button 
        type="button"
-       className="w-[90%] my-5 rounded-lg bg-gradient-to-r from-gray-700 to-gray-900 text-white py-2.5 text-sm font-medium shadow-md hover:opacity-90 transition flex items-center justify-center content-center mx-auto gap-2"
+       className="w-[90%] max-w-md my-4 sm:my-5 rounded-lg bg-gradient-to-r from-gray-700 to-gray-900 text-white py-2.5 text-sm font-medium shadow-md hover:opacity-90 transition flex items-center justify-center content-center mx-auto gap-2"
        onClick={() => handleSaveLinks()}
        >
           Save Changes

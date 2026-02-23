@@ -39,20 +39,20 @@ const DevTreeInput = ({ item, setItem, items }: DevTreeInputProps) => {
     }
 
     return (
-        <div className="w-full grid grid-cols-[120px_1fr] items-center border-b last:border-b-0 px-3 hover:bg-base-200">
+        <div className="w-full grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] items-center border-b last:border-b-0 px-2 sm:px-3 hover:bg-base-200">
             {/* icon and description */}
             <article
-                className={`p-3 flex gap-2 items-center cursor-pointer duration-300  hover:text-primary`}
+                className={`p-2 sm:p-3 flex gap-1 sm:gap-2 items-center cursor-pointer duration-300 hover:text-primary`}
             >
-                <item.icon className='w-4 h-4' />
-                <p className='capitalize text-sm'>{item.name}</p>
+                <item.icon className='w-4 h-4 flex-shrink-0' />
+                <p className='capitalize text-xs sm:text-sm truncate'>{item.name}</p>
             </article>
 
-            <div className="grid grid-cols-[1fr_auto] items-center">
+            <div className="grid grid-cols-[1fr_auto] items-center gap-2">
                 {/* input */}
                 <input
                     type="text"
-                    className='text-base-content w-auto rounded-lg  bg-base-200 px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition mr-2'
+                    className='text-base-content w-full min-w-0 rounded-lg bg-base-200 px-2 sm:px-4 py-2 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition'
                     placeholder={`Enter your ${item.name}`}
                     onChange={handleUrlChange}
                     name={item.name}
