@@ -60,7 +60,7 @@ const SearchForm = () => {
             <input
                 type="submit"
                 className="bg-pink-400 p-3 text-lg w-full uppercase text-base-content rounded-lg font-bold cursor-pointer"
-                value='Obtener mi DevTree'
+                value='Get my DevTree'
             />
         </form>
     )
