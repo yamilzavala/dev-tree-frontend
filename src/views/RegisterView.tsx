@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FormInput } from '../components/FormInput';
 import { useForm } from 'react-hook-form'
 import SubmitBtn from '../components/SubmitBtn';
@@ -9,11 +9,13 @@ import api from '../config/axios';
 import BackgroundAnimation from '../components/BackgroundAnimation';
 
 const Register = () => {
+    const location = useLocation()
+
     const navigate = useNavigate()
     const initialValues: RegisterForm = {
         name: '',
         email: '',
-        handle: '',
+        handle: location?.state?.handle || '',
         password: '',
         password_confirmation: '',
     }

@@ -2,10 +2,11 @@ import { Link } from 'react-router-dom'
 import BackgroundAnimation from '../components/BackgroundAnimation'
 import Navbar from '../components/Navbar'
 
-import hero1 from '/bg-media-4.jpg'
-import hero2 from '/bg-media-5.jpg'
+import hero3 from '/bg-media-11.jpg'
+import SearchForm from '../components/SearchForm'
 
-const carouselImages = [hero1, hero2];
+
+// const carouselImages = [hero1, hero2];
 
 const HomeView = () => {
 
@@ -32,11 +33,13 @@ const HomeView = () => {
                                 Create your profile in minutes, customize it to match your style, and start sharing instantly. Perfect for creators, developers, entrepreneurs, and anyone who wants to stay connected.
                             </p>
 
-                            <div className='mt-10 '>
+                            <SearchForm />
+
+                            {/* <div className='mt-10 '>
                                 <Link to='/admin' className='bg-pink-400 btn btn-primary '>
                                     Go to admin view
                                 </Link>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* right side */}
@@ -47,8 +50,8 @@ const HomeView = () => {
                                 </div>
                             ))}
                         </div> */}
-                        <div className='hidden h-[28rem] md:block md:w-1/2 p-3 bg-neutral rounded-box'>
-                            <img src={hero1} className='rounded-md h-full w-full  object-cover' />
+                        <div className='hidden h-[28rem] md:block md:w-1/2  rounded-box'>
+                            <img src={hero3} className='rounded-md h-full w-full  object-cover' />
                         </div>
                     </div>
                 </section>

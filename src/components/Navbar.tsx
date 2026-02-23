@@ -3,8 +3,16 @@ import { FaBarsStaggered } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
 import Toggle from './Toggle';
+import type { User } from "../types";
+import { useQueryClient } from "@tanstack/react-query";
 
-const Navbar = () => {
+const Navbar = ({ data }: { data?: User }) => {
+  const queryClient = useQueryClient()
+
+  const logout = () => {
+    localStorage.removeItem('AUTH_TOKEN')
+    queryClient.invalidateQueries({queryKey: ['user']})
+  }
 
   return (
     <nav className='bg-base-200/80 backdrop-blur-md relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[2px] after:w-screen after:bg-gradient-to-r after:from-purple-500 after:via-pink-500 after:to-orange-500 after:-ml-[50vw] after:left-[50%]'>
@@ -17,7 +25,7 @@ const Navbar = () => {
             to='/'
             className='hidden lg:flex text-3xl items-center'
           >
-            <FaCodepen className="hover:text-pink-500 text-gray-950 transition"/>
+            <FaCodepen className="hover:text-pink-500 text-gray-950 transition" />
           </NavLink>
           {/* DROPDOWN */}
           <div className='dropdown'>
@@ -28,7 +36,7 @@ const Navbar = () => {
               tabIndex={0}
               className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-200 rounded-box w-52'
             >
-              <NavLinks/>
+              <NavLinks />
             </ul>
           </div>
         </div>
@@ -36,14 +44,24 @@ const Navbar = () => {
         {/* LINKS */}
         <div className='navbar-center hidden lg:flex'>
           <ul className='menu menu-horizontal '>
-            <NavLinks/>
+            <NavLinks />
           </ul>
         </div>
-        
+
         {/* CART AND THEME */}
-        <div className='navbar-end'>
+        <div className='navbar-end flex gap-5'>
           {/* THEME ICONS */}
-          <Toggle/>
+          <Toggle />
+          {/* LogOut */}
+          {data?._id && (
+            <NavLink
+              className='capitalize text-sm text-base-content '
+              to='/auth/login'
+              onClick={logout}
+            >
+              <span className='text-base-content p-2 rounded-md bg-pink-300'>Sign out</span>
+            </NavLink>
+         )}
         </div>
       </div>
     </nav>

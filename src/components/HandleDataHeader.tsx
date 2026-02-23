@@ -8,7 +8,7 @@ const HandleDataHeader = ({ image, handle, description }: HandleDataHeaderProps)
   return (
     <div className="relative w-full h-1/2 overflow-hidden rounded-t-lg border">
       {/* Background overlay */}
-      <div className="absolute inset-0 z-30 bg-black/35" />
+      <div className="absolute inset-0 z-30 bg-black/15" />
       
       {/* Background image */}
       {image && (

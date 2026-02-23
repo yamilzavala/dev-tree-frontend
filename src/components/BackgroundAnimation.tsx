@@ -13,7 +13,7 @@ const BackgroundAnimation = ({opacity}: {opacity?: number}) => {
                     Sorry, your browser does not support embedded videos
                 </video>
                 <div className="absolute inset-0 bg-base-300/20"></div>
-                <div className="absolute inset-0 bg-white opacity-50" />
+                <div className="absolute inset-0 bg-white opacity-20" />
             </div>
         </>
     )

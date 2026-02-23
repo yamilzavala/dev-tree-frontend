@@ -31,7 +31,7 @@ const DevTree = ({ data }: { data: User, isLoading: boolean }) => {
             </div> */}
 
             <div className="relative z-10">
-                <Navbar />
+                <Navbar data={data}/>
                 {
                     <section className='align-element py-5 h-full'>
                         <div className="flex flex-col md:flex-row gap-5 mt-10 ">
