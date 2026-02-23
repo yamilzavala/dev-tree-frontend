@@ -7,14 +7,13 @@ type SubmitBtnProps = {
     isSubmitting: boolean;
 }
 
-export const SubmitBtn = ({text, className, children, isSubmitting}:SubmitBtnProps) => {
+export const SubmitBtn = ({className, children, isSubmitting}:SubmitBtnProps) => {
     return (
         <button className={className} type="submit" disabled={isSubmitting}>
             {isSubmitting ? 
                (                    
                     <ImSpinner11 className='animate-spin' />
                ) :                 
-            //    (text || 'submit')
             children
             }
         </button>

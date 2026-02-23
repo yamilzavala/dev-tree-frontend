@@ -1,4 +1,4 @@
-import { Form, useNavigate } from 'react-router-dom';
+import { Form } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import SubmitBtn from '../components/SubmitBtn';
 import { useForm } from 'react-hook-form'
@@ -9,11 +9,10 @@ import { updateImage, updateProfile } from '../api/DevTree';
 import { toast } from 'sonner'
 
 const ProfileView = () => {
-  const navigate = useNavigate()
   const queryClient = useQueryClient()
   const data: User = queryClient.getQueryData(['user'])!
 
-  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ProfileForm>({ defaultValues: {
+  const { register, handleSubmit, formState: { errors, isSubmitting }} = useForm<ProfileForm>({ defaultValues: {
     handle: data.handle,
     description: data.description
   } });
@@ -36,7 +35,6 @@ const ProfileView = () => {
     },
     onSuccess: (data) => {
       toast.success(data?.msg)
-      // queryClient.invalidateQueries({queryKey: ['user']})
       queryClient.setQueryData(['user'], (prevData: User) =>{
         return {
           ...prevData,

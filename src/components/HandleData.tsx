@@ -2,8 +2,6 @@ import type { SocialNetwork, UserHandle } from '../types'
 import DevTreeLink from './DevTreeLink'
 import HandleDataHeader from './HandleDataHeader'
 
-import hero3 from '/bg-media-11.jpg'
-
 type HandleDataProps = {
     data: {
         user: UserHandle

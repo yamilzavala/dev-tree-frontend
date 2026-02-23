@@ -23,7 +23,7 @@ const DevTreeInput = ({ item, setItem, items }: DevTreeInputProps) => {
         setItem(newItems)
     }
 
-    const handleEnabledLink = (e: boolean) => {
+    const handleEnabledLink = () => {
         const name =item.name;
         const newItems = items.map(currItem => {
             if(currItem.name === name) {

@@ -1,12 +1,9 @@
-import { Link } from 'react-router-dom'
 import BackgroundAnimation from '../components/BackgroundAnimation'
 import Navbar from '../components/Navbar'
 
 import hero3 from '/bg-media-11.jpg'
 import SearchForm from '../components/SearchForm'
 
-
-// const carouselImages = [hero1, hero2];
 
 const HomeView = () => {
 
@@ -34,22 +31,9 @@ const HomeView = () => {
                             </p>
 
                             <SearchForm />
-
-                            {/* <div className='mt-10 '>
-                                <Link to='/admin' className='bg-pink-400 btn btn-primary '>
-                                    Go to admin view
-                                </Link>
-                            </div> */}
                         </div>
 
                         {/* right side */}
-                        {/* <div className='h-[28rem] lg:carousel carousel-center   p-4 space-x-4 bg-neutral rounded-box'>
-                            {carouselImages.map((img, idx) => (
-                                <div key={idx} className='carousel-item'>
-                                    <img src={img} className='rounded-box h-full w-80  object-cover' />
-                                </div>
-                            ))}
-                        </div> */}
                         <div className='hidden h-[28rem] md:block md:w-1/2  rounded-box'>
                             <img src={hero3} className='rounded-md h-full w-full  object-cover' />
                         </div>
