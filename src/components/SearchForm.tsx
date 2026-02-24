@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import slugify from 'react-slugify'
 import { searchByHandle } from '../api/DevTree'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const SearchForm = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -17,6 +18,12 @@ const SearchForm = () => {
     })
 
     const handle = watch('handle')
+
+    useEffect(() => {
+        if (handle === '') {
+            mutation.reset()
+        }
+    }, [handle])
 
     const handleSearch = () => {
         const slug = slugify(handle)
