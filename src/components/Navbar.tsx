@@ -1,4 +1,5 @@
 import { FaBarsStaggered } from 'react-icons/fa6';
+import { FaCodepen } from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import NavLinks from './NavLinks';
 import Toggle from './Toggle';
@@ -10,7 +11,7 @@ const Navbar = ({ data }: { data?: User }) => {
 
   const logout = () => {
     localStorage.removeItem('AUTH_TOKEN')
-    queryClient.invalidateQueries({queryKey: ['user']})
+    queryClient.invalidateQueries({ queryKey: ['user'] })
   }
 
   return (
@@ -19,6 +20,13 @@ const Navbar = ({ data }: { data?: User }) => {
 
         {/* HOME AND DROPDOWN */}
         <div className='navbar-start'>
+          {/* Title */}
+          <NavLink
+            to='/'
+            className='hidden lg:flex text-3xl items-center'
+          >
+            <FaCodepen className="hover:text-pink-500 text-gray-950 transition" />
+          </NavLink>
           {/* DROPDOWN */}
           <div className='dropdown'>
             <label tabIndex={0} className='btn btn-ghost lg:hidden  text-gray-950 '>
@@ -53,7 +61,7 @@ const Navbar = ({ data }: { data?: User }) => {
             >
               <span className='text-base-content px-2 py-1.5 sm:p-2 rounded-md bg-pink-300 whitespace-nowrap'>Sign Out</span>
             </NavLink>
-         )}
+          )}
         </div>
       </div>
     </nav>
