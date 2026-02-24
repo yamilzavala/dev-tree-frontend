@@ -18,7 +18,7 @@ const HandleData = ({ data }: HandleDataProps) => {
             <section className="relative z-10 align-element h-full max-w-[500px]">
                 <div className="w-full  flex flex-col rounded-lg border shadow-xl backdrop-blur-sm text-base-300">
                     {/* Card Header with Background Image */}
-                    <HandleDataHeader image={user.image || avatarImg} handle={user.handle} description='Software engineer' />
+                    <HandleDataHeader image={user.image || avatarImg} handle={user.handle} description='Social Media Links' />
 
                     {/* Card Content */}
                     <div className='bg-white rounded-b-md h-1/2 px-6 pt-8 pb-8 space-y-6 text-center flex flex-col justify-start'>
