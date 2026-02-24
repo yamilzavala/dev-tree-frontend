@@ -35,7 +35,7 @@ const SearchForm = () => {
                 <input
                     type="text"
                     id="handle"
-                    className="border-none bg-transparent p-2 focus:ring-0 flex-1 text-pink-400"
+                    className="border-none bg-transparent p-2 focus:ring-0 focus:outline-none flex-1 text-pink-400"
                     placeholder="elonmusk, zuck, jeffbezos"
                     {...register("handle", {
                         required: "User name is required",
