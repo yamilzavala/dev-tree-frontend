@@ -44,8 +44,8 @@ const LinkTreeView = () => {
 
   return (
     <div className="w-full py-4 sm:py-7 border rounded-lg shadow-xl overflow-hidden">
-      {devTreeLinks.map(item => (
-        <DevTreeInput key={item.name} item={item} setItem={setDevTreeLinks} items={devTreeLinks}/>
+      {devTreeLinks.map((item, index) => (
+        <DevTreeInput key={item.name} item={item} setItem={setDevTreeLinks} items={devTreeLinks} isLast={index === devTreeLinks.length - 1}/>
       ))}
 
       {/* button */}

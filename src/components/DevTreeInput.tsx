@@ -7,9 +7,10 @@ type DevTreeInputProps = {
     item: DevTreeLink
     setItem :React.Dispatch<React.SetStateAction<DevTreeLink[]>>,
     items: DevTreeLink[]
+    isLast: boolean
 }
 
-const DevTreeInput = ({ item, setItem, items }: DevTreeInputProps) => {
+const DevTreeInput = ({ item, setItem, items, isLast }: DevTreeInputProps) => {
 
     const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => {
         const value = e.target.value;
@@ -39,7 +40,7 @@ const DevTreeInput = ({ item, setItem, items }: DevTreeInputProps) => {
     }
 
     return (
-        <div className="w-full grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] items-center border-b last:border-b-0 px-2 sm:px-3 hover:bg-base-200">
+        <div className={`w-full grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr] items-center px-2 sm:px-3 py-2 md:py-0 hover:bg-base-200 ${!isLast ? 'sm:mb-0 border-b' : ''}`}>
             {/* icon and description */}
             <article
                 className={`p-2 sm:p-3 flex gap-1 sm:gap-2 items-center cursor-pointer duration-300 hover:text-primary`}

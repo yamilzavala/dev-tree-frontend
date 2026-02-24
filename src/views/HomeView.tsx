@@ -34,7 +34,7 @@ const HomeView = () => {
                         </div>
 
                         {/* right side */}
-                        <div className='hidden h-[28rem] md:block md:w-1/2  rounded-box'>
+                        <div className='hidden h-[35.5rem] md:block md:w-1/2  rounded-box'>
                             <img src={hero3} className='rounded-md h-full w-full  object-cover' />
                         </div>
                     </div>
