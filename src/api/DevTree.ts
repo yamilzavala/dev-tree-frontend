@@ -8,8 +8,9 @@ export async function getUser() {
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.error)
+            throw new Error(error.response.data.error || error.response.data.msg || 'Failed to fetch user data')
         }
+        throw new Error('Failed to fetch user data')
     }
 }
 export async function updateProfile(formData: ProfileForm) {
@@ -18,8 +19,9 @@ export async function updateProfile(formData: ProfileForm) {
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.msg)
+            throw new Error(error.response.data.msg || 'Failed to update profile')
         }
+        throw new Error('Failed to update profile')
     }
 }
 
@@ -31,8 +33,9 @@ export async function updateImage(file: File) {
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.msg)
+            throw new Error(error.response.data.msg || 'Failed to update image')
         }
+        throw new Error('Failed to update image')
     }
 }
 
@@ -42,8 +45,9 @@ export async function updateLinks(links: string) {
         return data
     } catch (error) {
         if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.msg)
+            throw new Error(error.response.data.msg || 'Failed to update links')
         }
+        throw new Error('Failed to update links')
     }
 }
 
@@ -53,8 +57,9 @@ export async function getUserByHandle(handle: string) {
         return data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.msg)
+            throw new Error(error.response.data.msg || 'User not found')
         }
+        throw new Error('User not found')
     }
 }
 
@@ -64,8 +69,9 @@ export async function searchByHandle(handle: string) {
         return data;
     } catch (error) {
         if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.msg)
+            throw new Error(error.response.data.msg || 'User not found')
         }
+        throw new Error('User not found')
     }
 }
 
