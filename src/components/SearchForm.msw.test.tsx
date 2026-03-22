@@ -8,7 +8,7 @@ import { searchByHandleErrorHandler } from '../mocks/handlers'
 
 // Mock slugify
 vi.mock('react-slugify', () => ({
-  default: (text: string) => text.toLowerCase().replace(/\s+/g, '-')
+  default: (text: string) => text.toLowerCase().replace(/\s+/g, '')
 }))
 
 // Mock navigation
@@ -29,24 +29,14 @@ describe('SearchForm with MSW', () => {
     user = userEvent.setup()
     queryClient = new QueryClient({
       defaultOptions: {
-        queries: {
-          retry: false,
-        },
-        mutations: {
-          retry: false,
-        },
+        queries: { retry: false },
+        mutations: { retry: false },
       },
     })
+
     vi.clearAllMocks()
     server.resetHandlers()
   })
-
-  const getFormElements = () => {
-    return {
-      handleInput: screen.getByPlaceholderText('elonmusk, zuck, jeffbezos'),
-      submitButton: screen.getByRole('button', { name: /get my devtree/i })
-    }
-  }
 
   const renderSearchForm = () => {
     return render(
@@ -58,6 +48,11 @@ describe('SearchForm with MSW', () => {
     )
   }
 
+  const getFormElements = () => ({
+    handleInput: screen.getByPlaceholderText('elonmusk, zuck, jeffbezos'),
+    submitButton: screen.getByRole('button', { name: /get my devtree/i })
+  })
+
   test('should search for handle successfully', async () => {
     renderSearchForm()
 
@@ -66,10 +61,7 @@ describe('SearchForm with MSW', () => {
     await user.type(handleInput, 'johndoe')
     await user.click(submitButton)
 
-    // Wait for the search to complete and show success message
-    await waitFor(() => {
-      expect(screen.getByText('johndoe, go to')).toBeInTheDocument()
-    })
+    expect(await screen.findByText(/johndoe, go to/)).toBeInTheDocument()
   })
 
   test('should show error when search fails', async () => {
@@ -82,12 +74,7 @@ describe('SearchForm with MSW', () => {
     await user.type(handleInput, 'nonexistent')
     await user.click(submitButton)
 
-    // Should show error message
-    await waitFor(() => {
-      expect(screen.getByText('Search failed')).toBeInTheDocument()
-    })
-
-    // Should not navigate
+    expect(await screen.findByText('Search failed')).toBeInTheDocument()
     expect(mockNavigate).not.toHaveBeenCalled()
   })
 
@@ -107,11 +94,10 @@ describe('SearchForm with MSW', () => {
 
     const { handleInput, submitButton } = getFormElements()
 
-    // Trigger validation error
     await user.click(submitButton)
-    expect(screen.getByText('User name is required')).toBeInTheDocument()
 
-    // Start typing to clear error
+    expect(await screen.findByText('User name is required')).toBeInTheDocument()
+
     await user.type(handleInput, 'test')
 
     await waitFor(() => {
@@ -127,22 +113,20 @@ describe('SearchForm with MSW', () => {
     await user.type(handleInput, '   ')
     await user.click(submitButton)
 
-    // Spaces should trigger API search which returns "User not found"
     expect(await screen.findByText('User not found')).toBeInTheDocument()
     expect(mockNavigate).not.toHaveBeenCalled()
   })
 
+  // 🔥 Caso REAL de special characters (no duplicado)
   test('should handle special characters in handle', async () => {
     renderSearchForm()
 
     const { handleInput, submitButton } = getFormElements()
 
-    await user.type(handleInput, 'johndoe')
+    await user.type(handleInput, 'John Doe')
     await user.click(submitButton)
 
-    // Should show success message for found user
-    await waitFor(() => {
-      expect(screen.getByText('johndoe, go to')).toBeInTheDocument()
-    })
+    // slugify mock → "johndoe"
+    expect(await screen.findByText(/johndoe, go to/)).toBeInTheDocument()
   })
 })
