@@ -24,7 +24,7 @@ describe('DevTreeLink', () => {
     
     const link = screen.getByRole('link')
     expect(link).toHaveAttribute('href', 'https://facebook.com/test')
-    expect(link).toHaveAttribute('target', '_blank_break-test')
+    expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noreferrer noopener')
   })
 
